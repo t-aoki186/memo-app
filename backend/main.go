@@ -8,11 +8,11 @@ import (
 func main() {
 	http.HandleFunc("/api/hello", helloHandler)
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", nil) // 指定なし, [net/http]のデフォルト処理を使用する。
 }
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-	response := map[string]string{
+func helloHandler(w http.ResponseWriter, r *http.Request) { // w,r: HTTPレスポンスの書き込みと取得。 , *はポインタ
+	response := map[string]string{ // map[string]string: 文字列のキーと値を持つマップを作成する。
 		"message": "hello, world!",
 	}
 
