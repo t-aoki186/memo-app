@@ -13,12 +13,13 @@ func main() {
 	http.ListenAndServe(":8080", nil) // 指定なし, [net/http]のデフォルト処理を使用する。
 }
 
-func helloHandler(w http.ResponseWriter, r *http.Request) { // w,r: HTTPレスポンスの書き込みと取得。 , *はポインタ
-	response := map[string]string{ // map[string]string: 文字列のキーと値を持つマップを作成する。
-		"message": "hello, world!",
-	}
-
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
 	w.Header().Set("Content-Type", "application/json")
+
+	response := map[string]string{
+		"message": "Hello, Go!",
+	}
 
 	json.NewEncoder(w).Encode(response)
 }
